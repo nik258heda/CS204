@@ -7,6 +7,8 @@ int main(){
 	int n2=s2.length();
 	if (n2>n1) 
  	       swap(s1, s2); 
+	n1=s1.length();
+	n2=s2.length();
 	vector<int> res(n1+n2,0);
     	reverse(s1.begin(), s1.end()); 
   	reverse(s2.begin(), s2.end());
