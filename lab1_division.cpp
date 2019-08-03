@@ -17,7 +17,7 @@ int gr(string str1,string str2){
 string sub(string str1,string str2)
 {
 	int sign;
-	if(gr(str1,str2)==2) cout<<0;
+	if(gr(str1,str2)==2) return "";
 	else{
 		if (gr(str1,str2)==0){
 			swap(str1,str2);
@@ -60,26 +60,36 @@ string sub(string str1,string str2)
 	}
 }
 int main(){
-	string s1,s2,s;
+	string s1,s2,s="";
 	cin>>s1>>s2;
 	int n1=s1.length();
 	int n2=s2.length();
-	if(gr(s1,s2)==0) cout<<0<<s1;
-	else if(gr(s1,s2)==2) cout<<1<<0;
+	if(gr(s1,s2)==0) cout<<0<<" "<<s1;
+	else if(gr(s1,s2)==2) cout<<1<<" "<<0;
 	else{
-		int i=n2;
-		string x(s1.begin(),s1.begin()+n2-1);
-		while(i<n1){
-			int h=0;
-			while(gr(x,s2)!=0){
-				x=sub(x,s2);
-				h++;			
-			}
-			if(x=="0") x=="";
-			s.push_back(h);
-			x.push_back(s[i]);			
+		string x="";
+		int i;
+		for(i=0;i<n2;i++){
+			x.push_back(s1[i]);	
 		}
-		cout<<s;	
+		while(i<=n1){
+			int h=0;
+			while(1){
+				if(gr(x,s2)==0){
+				break;
+				}
+				else{
+					string y=sub(x,s2);
+					x=y;
+					h++;
+				}			
+			}
+			if(i!=n2 || h!=0) s.push_back(h+'0');
+			if(i<n1) x.push_back(s1[i]);
+			i++;			
+		}
+		if(x=="") x.push_back('0');
+		cout<<s<<" "<<x;	
 	}
 	return 0;
 }
