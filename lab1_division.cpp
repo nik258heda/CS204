@@ -64,7 +64,8 @@ int main(){
 	cin>>s1>>s2;
 	int n1=s1.length();
 	int n2=s2.length();
-	if(gr(s1,s2)==0) cout<<0<<" "<<s1;
+	if(s2=="0") cout<<"Not defined";
+	else if(gr(s1,s2)==0) cout<<0<<" "<<s1;
 	else if(gr(s1,s2)==2) cout<<1<<" "<<0;
 	else{
 		string x="";
@@ -76,7 +77,7 @@ int main(){
 			int h=0;
 			while(1){
 				if(gr(x,s2)==0){
-				break;
+					break;
 				}
 				else{
 					string y=sub(x,s2);
