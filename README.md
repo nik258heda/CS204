@@ -1,2 +1,2 @@
-# CS204-Lab1
-Ans of lab 1
+# CS204
+Lab assignments submitions
