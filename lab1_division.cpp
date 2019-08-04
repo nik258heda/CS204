@@ -60,13 +60,16 @@ string sub(string str1,string str2)
 	}
 }
 int main(){
+	int t;
+	cin>>t;
+	for(int k=0;k<t;k++){
 	string s1,s2,s="";
 	cin>>s1>>s2;
 	int n1=s1.length();
 	int n2=s2.length();
-	if(s2=="0") cout<<"Not defined";
-	else if(gr(s1,s2)==0) cout<<0<<" "<<s1;
-	else if(gr(s1,s2)==2) cout<<1<<" "<<0;
+	if(s2=="0") cout<<"Not defined"<<"\n";
+	else if(gr(s1,s2)==0) cout<<0<<" "<<s1<<"\n";
+	else if(gr(s1,s2)==2) cout<<1<<" "<<0<<"\n";
 	else{
 		string x="";
 		int i;
@@ -90,7 +93,8 @@ int main(){
 			i++;			
 		}
 		if(x=="") x.push_back('0');
-		cout<<s<<" "<<x;	
+		cout<<s<<" "<<x<<"\n";	
+	}
 	}
 	return 0;
 }

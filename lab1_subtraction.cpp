@@ -16,10 +16,13 @@ int gr(string str1,string str2){
 }
 int main()
 { 
+	int t;
+	cin>>t;
+	for(int k=0;k<t;k++){
 	string str1,str2;
 	cin>>str1>>str2;
 	int sign;
-	if(gr(str1,str2)==2) cout<<0;
+	if(gr(str1,str2)==2) cout<<0<<"\n";
 	else{
 		if (gr(str1,str2)==0){
 			swap(str1,str2);
@@ -58,7 +61,8 @@ int main()
 		if (sign==1) 
 			str.push_back('-'); 
 		reverse(str.begin(), str.end()); 
-		cout<<str;
+		cout<<str<<"\n";
+	}
 	}
 	return 0;
 }

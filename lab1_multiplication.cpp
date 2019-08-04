@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
+	int t;
+	cin>>t;
+	for(int k=0;k<t;k++)
+	{
 	string s1,s2;
 	cin>>s1>>s2;
 	int n1=s1.length();
@@ -29,12 +33,14 @@ int main(){
 	while(res[i]==0 && i>=0){
 		i--;
 	}
-	if(i==-1) cout<<0;
+	if(i==-1) cout<<0<<"\n";
 	else{
 		while(i>=0){
 			cout<<res[i];
 			i--;
 		}
+		cout<<"\n";
+	}
 	}
 	return 0;
 }
