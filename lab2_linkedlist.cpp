@@ -19,10 +19,16 @@ void add_first(int x1,int y1){
 	head =new_node;	
 }
 void del_first(){
-	Node *temp=head;
-	temp=temp->next;
-	head=temp->next;
-	delete temp;
+	if(head==NULL)
+	{
+		cout<<"empty";	
+	}
+	else{
+		Node *temp=head;
+		head=head->next;
+		temp->next=NULL;
+		delete temp;
+	}
 }
 void del(int x1,int y1) 
 { 
@@ -42,16 +48,16 @@ void del(int x1,int y1)
     prev->next = temp->next; 
     free(temp);
 } 
-bool search(int x1,int y1) 
+string search(int x1,int y1) 
 { 
     struct Node* current = head; 
     while (current != NULL) 
     { 
         if (current->x == x1 && current->y == y1) 
-            return true; 
+            return "true"; 
         current = current->next; 
     } 
-    return false; 
+    return "false"; 
 } 
 void search_dis(float d) 
 { 
@@ -113,4 +119,3 @@ int main(){
 	}
 	return 0;
 }
-
