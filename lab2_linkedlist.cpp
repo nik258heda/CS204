@@ -21,7 +21,7 @@ void add_first(int x1,int y1){
 void del_first(){
 	if(head==NULL)
 	{
-		cout<<"empty";	
+		cout<<-1<<"\n";	
 	}
 	else{
 		Node *temp=head;
@@ -32,21 +32,29 @@ void del_first(){
 }
 void del(int x1,int y1) 
 { 
-    struct Node* temp =head, *prev; 
-    if (temp != NULL && temp->x == x1 && temp->y == y1) 
-    { 
-        head = temp->next;    
-        free(temp);                
-        return; 
-    }  
-    while (temp != NULL && (temp->x != x1 || temp->y != y1)) 
-    { 
-        prev = temp; 
-        temp = temp->next; 
-    }  
-    if (temp == NULL) return; 
-    prev->next = temp->next; 
-    free(temp);
+    if(head==NULL){
+    	cout<<-1<<"\n";
+    }
+    else{		
+    	struct Node* temp =head, *prev; 
+   	 if (temp != NULL && temp->x == x1 && temp->y == y1) 
+   	 { 
+   	     head = temp->next;    
+   	     free(temp);                
+   	     return; 
+   	 }  
+   	 while (temp != NULL && (temp->x != x1 || temp->y != y1)) 
+   	 { 
+   	     prev = temp; 
+   	     temp = temp->next; 
+   	 }  
+   	 if (temp == NULL){
+   	 	cout<<-1<<"\n";
+   	 	return;
+   	 } 
+   	 prev->next = temp->next; 
+   	 free(temp);
+    }	    
 } 
 string search(int x1,int y1) 
 { 
@@ -54,23 +62,24 @@ string search(int x1,int y1)
     while (current != NULL) 
     { 
         if (current->x == x1 && current->y == y1) 
-            return "true"; 
+            return "True"; 
         current = current->next; 
     } 
-    return "false"; 
+    return "False"; 
 } 
-void search_dis(float d) 
+int search_dis(float d) 
 { 
+    int count=0;
     struct Node* current = head; 
     while (current != NULL) 
     { 
 	int a= current->x;
 	int b= current->y;
-        if (dis(a,b)<=d) 
-            cout<<"("<<current->x<<","<<current->y<<")"; 
+        if (dis(a,b)<=d) count++;
         current = current->next; 
-    } 
-    return;  
+    }
+    if(count==0) count=-1;
+    return count;  
 }
 int length()  
 {  
@@ -105,7 +114,7 @@ int main(){
 		if(i==4){
 			int d;
 			cin>>d;
-			search_dis(d);
+			cout<<search_dis(d)<<"\n";
 			cout<<"\n";
 		}
 		if(i==5){
