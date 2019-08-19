@@ -4,8 +4,47 @@
 #define vt vector
 #define f(x, y, z) for (lli x = y; x < z; x++)
 using namespace std;
-vector<string> stov(string s)
+struct node
+{
+    string s;
+    node *left = NULL, *right = NULL;
+};
 
+node *construct_tree(vt<string> postfix)
+{
+    node *root = NULL;
+    vt<node *> stk;
+    int i = 0;
+    while (i != postfix.size())
+    {
+        if (postfix[i] != "+" && postfix[i] != "-" && postfix[i] != "*" && postfix[i] != "/" && postfix[i] != "^")
+        {
+            node *temp = (node *)malloc(sizeof(node));
+            temp->s = postfix[i];
+            f(j, 0, postfix[i].size()) if (postfix[i][j] < '0' || postfix[i][j] > '9') return NULL;
+            stk.pb(temp);
+        }
+        else
+        {
+            if (stk.size() < 2)
+                return NULL;
+            node *s1 = stk.back();
+            stk.pop_back();
+            node *s2 = stk.back();
+            stk.pop_back();
+            node *temp = (node *)malloc(sizeof(node));
+            temp->s = postfix[i];
+            temp->left = s2;
+            temp->right = s1;
+            stk.pb(temp);
+        }
+        i++;
+    }
+    if (stk.size() != 1)
+        return NULL;
+    return stk.back();
+}
+vector<string> stov(string s)
 {
     int n = s.size();
     vector<string> st;
@@ -142,47 +181,6 @@ vector<string> itop(vector<string> s)
     return ns;
 }
 
-struct node
-{
-    string s;
-    node *lch = NULL, *rch = NULL;
-};
-
-node *construct_tree(vt<string> postfix)
-{
-    node *root = NULL;
-    vt<node *> stk;
-    int i = 0;
-    while (i != postfix.size())
-    {
-        if (postfix[i] != "+" && postfix[i] != "-" && postfix[i] != "*" && postfix[i] != "/" && postfix[i] != "^")
-        {
-            node *temp = (node *)malloc(sizeof(node));
-            temp->s = postfix[i];
-            f(j, 0, postfix[i].size()) if (postfix[i][j] < '0' || postfix[i][j] > '9') return NULL;
-            stk.pb(temp);
-        }
-        else
-        {
-            if (stk.size() < 2)
-                return NULL;
-            node *s1 = stk.back();
-            stk.pop_back();
-            node *s2 = stk.back();
-            stk.pop_back();
-            node *temp = (node *)malloc(sizeof(node));
-            temp->s = postfix[i];
-            temp->lch = s2;
-            temp->rch = s1;
-            stk.pb(temp);
-        }
-        i++;
-    }
-    if (stk.size() != 1)
-        return NULL;
-    return stk.back();
-}
-
 lli evaluate(node *root)
 {
     string s = root->s;
@@ -195,7 +193,7 @@ lli evaluate(node *root)
     }
     else
     {
-        int lc = evaluate(root->lch), rc = evaluate(root->rch);
+        int lc = evaluate(root->left), rc = evaluate(root->right);
         if (s == "+")
         {
             ans = lc + rc;
@@ -242,5 +240,3 @@ int main()
     }
     return 0;
 }
-
-
