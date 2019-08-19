@@ -193,27 +193,30 @@ lli evaluate(node *root)
     }
     else
     {
-        int lc = evaluate(root->left), rc = evaluate(root->right);
+        int l = evaluate(root->left), r = evaluate(root->right);
         if (s == "+")
         {
-            ans = lc + rc;
+            ans = l + r;
         }
         else if (s == "-")
         {
-            ans = lc - rc;
+            ans = l - r;
         }
         else if (s == "*")
         {
-            ans = lc * rc;
+            ans = l * r;
         }
         else if (s == "/")
         {
-            ans = lc / rc;
+            ans = l / r;
         }
         else
         {
             ans = 1;
-            f(i, 0, rc) { ans *= lc; }
+            f(i, 0, r)
+            {
+                ans *= l;
+            }
         }
     }
     return ans;
