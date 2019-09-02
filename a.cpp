@@ -17,7 +17,6 @@ using namespace std;
 #define beg begin()
 #define en end()
 #define forl(i,a,n) for(int i=a;i<n;i++)
-#define rfor(i,n,a) for(int i=n;i>=a;i--)
 #define fore(i,a,n) for(int i=a;i<=n;i++)
 ll mod=1e9+7;
 //------------------------------------------------------------
