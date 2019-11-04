@@ -5,7 +5,7 @@ int main()
     int n;
     cin >> n;
     int adj[n][n];
-    int distance[i][j];
+    int distance[n][n];
     //Input here
     for (int i = 1; i <= n; i++)
     {
