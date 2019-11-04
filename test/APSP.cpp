@@ -4,7 +4,7 @@ int main()
 {
     int n;
     cin >> n;
-    adj[n][n];
+    int adj[n][n];
     //Input here
     for (int i = 1; i <= n; i++)
     {
