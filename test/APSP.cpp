@@ -5,6 +5,7 @@ int main()
     int n;
     cin >> n;
     int adj[n][n];
+    int distance[i][j];
     //Input here
     for (int i = 1; i <= n; i++)
     {
@@ -15,7 +16,7 @@ int main()
             else if (adj[i][j])
                 distance[i][j] = adj[i][j];
             else
-                distance[i][j] = INF;
+                distance[i][j] = 1000000;
         }
     }
     for (int k = 1; k <= n; k++)
