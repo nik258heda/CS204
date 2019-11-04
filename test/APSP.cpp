@@ -2,11 +2,17 @@
 using namespace std;
 int main()
 {
-    int n;
-    cin >> n;
-    int adj[n][n];
-    int distance[n][n];
-    //Input here
+    int n, m;
+    cin >> n >> m;
+    int adj[n+1][n+1];
+    int distance[n+1][n+1];
+    for (int i = 0; i < m; i++)
+    {
+        int p, q, w;
+        cin >> p >> q >> w;
+        adj[p][q] = w;
+        adj[q][p] = w;
+    }
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= n; j++)
@@ -29,5 +35,11 @@ int main()
                                      distance[i][k] + distance[k][j]);
             }
         }
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            cout<<distance[i][j]<<" ";
+        }
+        cout<<"\n";
     }
 }
