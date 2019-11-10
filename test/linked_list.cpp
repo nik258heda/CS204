@@ -1,0 +1,147 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct Node{
+	int x;
+	int y;
+	struct Node *next;	
+};
+struct Node* head =NULL;
+float dis(int x, int y){
+	float k;
+	k=sqrt(x*x + y*y);
+	return k;
+}
+void add_first(int x1,int y1){
+	Node* new_node = new Node;
+	new_node->x=x1;
+	new_node->y=y1;
+	new_node->next=head;
+	head =new_node;	
+}
+void add_last(int x1,int y1){
+    Node* temp = head;
+    Node* new_node= new Node;
+    new_node->x=x1;
+    new_node->y=y1;
+    new_node->next=NULL;
+    if(head==NULL){
+        head->x=x1;
+        head->y=y1;
+        head->next=NULL;
+    }
+    else{
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        temp->next=new_node;
+    }
+}
+void del_first(){
+	if(head==NULL)
+	{
+		cout<<-1<<"\n";	
+	}
+	else{
+		Node *temp=head;
+		head=head->next;
+		temp->next=NULL;
+		delete temp;
+	}
+}
+void del(int x1,int y1) 
+{ 
+    if(head==NULL){
+    	cout<<-1<<"\n";
+    }
+    else{		
+    	struct Node* temp =head, *prev; 
+   	 if (temp != NULL && temp->x == x1 && temp->y == y1) 
+   	 { 
+   	     head = temp->next;    
+   	     free(temp);                
+   	     return; 
+   	 }  
+   	 while (temp != NULL && (temp->x != x1 || temp->y != y1)) 
+   	 { 
+   	     prev = temp; 
+   	     temp = temp->next; 
+   	 }  
+   	 if (temp == NULL){
+   	 	cout<<-1<<"\n";
+   	 	return;
+   	 } 
+   	 prev->next = temp->next; 
+   	 free(temp);
+    }	    
+} 
+string search(int x1,int y1) 
+{ 
+    struct Node* current = head; 
+    while (current != NULL) 
+    { 
+        if (current->x == x1 && current->y == y1) 
+            return "True"; 
+        current = current->next; 
+    } 
+    return "False"; 
+} 
+int search_dis(float d) 
+{ 
+    int count=0;
+    struct Node* current = head; 
+    while (current != NULL) 
+    { 
+	int a= current->x;
+	int b= current->y;
+        if (dis(a,b)<=d) count++;
+        current = current->next; 
+    }
+    if(count==0) count=-1;
+    return count;  
+}
+int length()  
+{  
+    int count = 0; 
+    Node* current = head;  
+    while (current != NULL)  
+    {  
+        count++;  
+        current = current->next;  
+    }  
+    return count;  
+}  
+int main(){
+	long long t;
+	cin>>t;
+	int i;
+	for(long long j=0;j<t;j++){
+		cin>>i;
+		if(i==1){
+			int x1,y1;
+			cin>>x1>>y1;
+			add_first(x1,y1);
+		}
+		if(i==2){
+			del_first();
+		}
+		if(i==3){
+			int x1,y1;
+			cin>>x1>>y1;
+			del(x1,y1);
+		}
+		if(i==4){
+			int x1,y1;
+            cin>>x1>>y1;
+            add_last(x1,y1);
+		}
+		if(i==5){
+			int x1,y1;
+			cin>>x1>>y1;
+			cout<<search(x1,y1)<<"\n";
+		}
+		if(i==6){
+			cout<<length()<<"\n";
+		}	
+	}
+	return 0;
+}
